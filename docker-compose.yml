@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  app:
+    build: .
+    ports:
+      - '8080:8080'
+    networks:
+      - laravel
+    volumes:
+      - .:/var/www/html
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:${DB_PORT}'
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - 'db_data:/var/lib/postgresql/data'
+    networks:
+      - laravel
+
+volumes:
+  db_data:
+
+networks:
+  laravel:
