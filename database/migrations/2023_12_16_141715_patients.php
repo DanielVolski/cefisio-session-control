@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id')->uniqid();
             $table->string('name', 80)->nullable(false);
+            $table->string('cpf', 14)->nullable(false);
             $table->string('medical_record', 20)->nullable(false);
             $table->string('referral_slip', 5)->nullable(false);
             $table->timestamps();
