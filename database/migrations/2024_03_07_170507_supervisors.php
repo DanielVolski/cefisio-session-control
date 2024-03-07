@@ -12,15 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('supervisors', function (Blueprint $table) {
-            $table->bigIncrements('id')->uniqid();
-            $table->unsignedBigInteger('secretarian_id');
-            $table->string('email')->nullable(false);
-            $table->string('name', 80)->nullable(false);
-            $table->string('password')->nullable(false);
+            $table->unsignedBigInteger('id')->unique()->primary();
+            $table->unsignedBigInteger('secretarian_id')->unique();
             $table->string('specialty', 20)->nullable(false);
             $table->timestamps();
-            $table->unique('email');
-            $table->foreign('secretarian_id')->references('id')->on('secretarians');
+            $table->foreign('secretarian_id')->references('id')->on('users');
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

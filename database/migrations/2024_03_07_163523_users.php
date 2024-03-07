@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id')->uniqid();
-            $table->unsignedBigInteger('apprentice_id')->nullable(false);
-            $table->unsignedBigInteger('patient_id')->nullable(false);
+            $table->string('email')->nullable(false)->unique();
+            $table->string('name', 80)->nullable(false);
+            $table->string('password')->nullable(false);
             $table->timestamps();
-            $table->foreign('apprentice_id')->references('id')->on('apprentices');
-            $table->foreign('patient_id')->references('id')->on('patients');
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sessions');
+        //
     }
 };

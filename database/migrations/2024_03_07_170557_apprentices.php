@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('secretarians', function (Blueprint $table) {
-            $table->bigIncrements('id')->uniqid();
-            $table->string('email')->nullable(false);
-            $table->string('name', 80)->nullable(false);
-            $table->string('password')->nullable(false);
+        Schema::create('apprentices', function (Blueprint $table) {
+            $table->unsignedBigInteger('supervisor_id')->nullable(false)->unique();
             $table->timestamps();
-            $table->unique('email');
+            $table->foreign('supervisor_id')->references('id')->on('users');
         });
     }
 
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('secretarians');
+        Schema::dropIfExists('apprentices');
     }
 };
