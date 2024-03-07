@@ -42,14 +42,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-    public function supervisor()
-    {
-        return $this->hasOne(Supervisor::class);
-    }
-
-    public function apprentice()
-    {
-        return $this->hasOne(Apprentice::class);
-    }
 }
