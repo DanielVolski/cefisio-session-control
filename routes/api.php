@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,5 @@ Route::get('/health', function () {
     return response('Up and running!', 200)
     ->header('Content-Type', 'text/plain');
 });
+
+Route::post('/login', [LoginController::class, 'authenticate']);
