@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Http\Controllers\SupervisorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::get('/health', function () {
     return response('Up and running!', 200)
     ->header('Content-Type', 'text/plain');
 });
 
 Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/supervisor/create', [SupervisorController::class, 'create']);
+    Route::delete('/supervisor/delete/{id}', [SupervisorController::class, 'delete']);
+    Route::put('/supervisor/update/{id}', [SupervisorController::class, 'update']);
+    Route::get('/supervisor/getAll', [SupervisorController::class, 'getAll']);
+    Route::get('/supervisor/get/{id}', [SupervisorController::class, 'get']);
+})->name('supervisor');
+
