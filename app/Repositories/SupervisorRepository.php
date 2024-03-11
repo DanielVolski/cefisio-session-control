@@ -68,8 +68,8 @@ class SupervisorRepository implements SupervisorRepositoryInterface {
         return Supervisor::all()->toArray();
     }
 
-    public function get(string|int $id): array 
+    public function get(string|int $id): array|null 
     {
-        return Supervisor::find($id);
+        return $this->supervisor_model->find($id);
     }
 }

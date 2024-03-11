@@ -11,5 +11,5 @@ interface SupervisorRepositoryInterface {
     public function update(UpdateSupervisorDTO $dto): bool;
     public function delete(string|int $id): bool;
     public function getAll(): array;
-    public function get(string|int $id): array;
+    public function get(string|int $id): array|null;
 }
