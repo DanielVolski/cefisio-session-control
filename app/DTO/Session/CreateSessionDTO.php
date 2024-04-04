@@ -1,5 +1,9 @@
 <?php
 
+namespace App\DTO\Session;
+
+use Illuminate\Http\Request;
+
 class CreateSessionDTO {
     public function __construct(
         public int $apprentice_id,
