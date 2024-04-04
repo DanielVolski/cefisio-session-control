@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApprenticeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,4 +39,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/apprenctice/getAll', [ApprenticeController::class, 'getAll']);
     Route::get('/apprentice/get/{id}', [ApprenticeController::class, 'get']);
 })->name('apprentice');
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/patient/create', [PatientController::class, 'create']);
+    Route::delete('/patient/delete/{id}', [PatientController::class, 'delete']);
+    Route::put('/patient/update/{id}', [PatientController::class, 'update']);
+    Route::get('/patient/getAll', [PatientController::class, 'getAll']);
+    Route::get('/patient/get/{id}', [PatientController::class, 'get']);
+})->name('patient');
 

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('apprentice_id')->nullable()->unique();
             $table->string('name', 80)->nullable(false);
             $table->string('cpf', 14)->nullable(false);
-            $table->string('medical_record', 20)->nullable();
-            $table->string('referral_slip', 5)->nullable();
+            $table->string('medical_record', 20)->nullable(true);
+            $table->string('referral_slip', 5)->nullable(true);
             $table->timestamps();
             $table->foreign('secretarian_id')->references('id')->on('users');
             $table->foreign('apprentice_id')->references('id')->on('users');
